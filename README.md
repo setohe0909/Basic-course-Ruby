@@ -4,9 +4,9 @@ En este repositorio se puede encontrar información sobre el uso de diferentes a
 
 <h2>En los siguientes pasos podemos ver:</h2>
 <ul>
-  <il>Hello world</il>
-  <il>Sentencias</il>
-  <il>Simbolos en Ruby</il>
-  <il>Variables</il>
-  <il>Bloques de código</il>
+  <li>Hello world</li>
+  <li>Sentencias</li>
+  <li>Simbolos en Ruby</li>
+  <li>Variables</li>
+  <li>Bloques de código</li>
 </ul>
