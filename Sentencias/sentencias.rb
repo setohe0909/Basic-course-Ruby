@@ -111,4 +111,3 @@
 			for  fruta in fruitas
 				puts frutas.capitalize
 			end
-

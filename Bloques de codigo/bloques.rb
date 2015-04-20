@@ -129,3 +129,70 @@
 
 				diccionario.map {!c,v! "#{c} : #{v * 20}"}
 					result=> ["a : 222","b : 6660"]
+
+	# Método  sort:
+		# => Comparador de la nave espacial, sirve para verificar el funcionamiento
+		# del metodo sort.
+			#Ejemplo:
+				# => El tipo  de resultado puede ser con el comparador
+				# 1-- El resultado es  1, si el valor inicial es mayor al segundo valor
+				# 2-- El resultado es -1, si el valor inicial es menor al segundo valor
+				# 3-- El resultado es  0, si ambos valores son iguales
+				2 <=> 1
+					result => 1
+				3 <=> 4
+					result => -1
+				3 <=> 3
+					result => 0
+
+		#Ejemplo funcionamiento sort:
+			array = [3,8,1,8,2]
+			array.sort
+				result => [1,2,3,8,8]
+
+		# Ejemplo sort como bloque de código:
+			array = [3,8,1,8,2]
+			array.sort {!v1,v2! v1 <=> v2 }
+				result => [1,2,3,8,8]
+
+			fruta = ["manzana","pera","naranja","durazno"]
+			fruta.sort
+				result => ["durazno","manzana","naranja","pera"]
+
+			fruta.sort {!fruta1,fruta2! fruta1.length <=> fruta2.length }
+				result => ["pera","manzana","naranja","durazno"]
+
+			fruta.sort_by {!fruta! fruta.length }
+				result => ["pera","manzana","naranja","durazno"]	
+
+		# Ejemplo sort con diccionarios:
+			diccionario = {"a"=> 111, "b"=> 222, "c"=> 333}
+			diccionario.to_a
+			diccionario.sort {!item1,item2! item1[0] <=> item2[0]}
+				result => ["a"=>111,"b"=>222,"c"=>333]
+
+	# Método inject:
+		# Este metodo se encarga de acumular información y retornas la misma
+		# Ejemplo: memo hace referencia en ruby de un acumulador
+			(1..10).inject {!memo,n! memo + n}
+				result => 55
+
+			array = [*1..10]
+				result => [1,2,3,4,5,6,7,8,9,10]
+			suma = array.inject {!memo,n! memo + n}
+				result => 55
+
+			suma = array.inject(100) {!memo,n! memo + n}
+				result => 155
+
+			fruta = ["manzana","pera","cirualea","kiwi","durazno"]
+			fruta_mas_larga = fruta.inject do !memo,fruta!
+				if memo.length > fruta.length
+					memo
+				else
+					fruta
+				end
+			end
+
+			menu = ["Home","Historia","Servicios","Sobre nosotros"]
+			menu.inject(10) {!memo,seccion! memo + seccion.length}
