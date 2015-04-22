@@ -37,4 +37,24 @@
 		# Define una variable como un objeto
 			@@varaible = ["manzana","pera","transeunte","software"]
 
+	# Tipos de métodos
+		#Public, private, protected
+		#Los métodos de una clase por defecto, y si no se indica lo contrario, son públicos. Además de público, un método puede ser protected o private.
+		#Para determinar de qué tipo es basta con añadir la palabra clave private al principio de los métodos privados por ejemplo:
+
+			class coche
+		        def abrirPuertas
+		        end
+
+		        def cerrarPuertas
+		        end
+
+		        private
+		                def abrirGuantera
+		                end
+		        end
+			end
+
+		#La palabra clave protected se usa de la misma forma que private con la diferencia que un si una clase hereda el método también puede usarla como si fuera público, mientras que si se llama desde el exterior se comporta como un método privado.
+
 
