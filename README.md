@@ -11,4 +11,5 @@ En este repositorio se puede encontrar información sobre el uso de diferentes a
   <li>Bloques de código</li>
   <li>Métodos</li>
   <li>Clases</li>
+  <li>Modulos</li>
 </ul>
