@@ -59,3 +59,27 @@
 		# include => Permite incluir el uso de un modulo directamente en una
 		# unica clase
 			include InformacionContacto
+
+# El módulo enumerable
+	# Permite implementar metodos llamandolos desde enum para ordenar 
+	# información y otras opciones
+	# 
+	# Ejemplo:
+	#
+		class Lista
+
+			include Enumerable # Metodo donde se inicializa each, permite recorrer arreglos o enumerarlos
+
+			def initialize
+				@lista = []
+			end
+
+			def each
+				@lista.each {|item| yield item}
+			end
+
+		end
+
+		lista = Lista.new
+		lista.lista = ["Comprar comida","Lavar el carro"]
+		lista.lista.select{|i| i.length > 6}

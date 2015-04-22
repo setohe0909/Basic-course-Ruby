@@ -12,4 +12,5 @@ En este repositorio se puede encontrar información sobre el uso de diferentes a
   <li>Métodos</li>
   <li>Clases</li>
   <li>Modulos</li>
+  <li>Trabajando con archivos</li>
 </ul>

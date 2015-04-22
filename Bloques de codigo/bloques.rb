@@ -21,37 +21,37 @@
 		# delete_if? borrar cualquier elemento que se desee si se encuentra en el objeto o elemento a buscar
 		
 		# Ejemplo find:
-			(1..10).find{!i! i == 5}
+			(1..10).find{|i| i == 5}
 			result => 5
 
-			(1..10).find{!i! i % 3 == 0}
+			(1..10).find{|i| i % 3 == 0}
 				result => 3
 
 		# Ejemplo detect:
-			(1..10).detect{!i! i % 3 == 0}
+			(1..10).detect{|i| i % 3 == 0}
 				result => 3
 
-			(1..10).detect{!i! (1..10).include?(i*3)}
+			(1..10).detect{|i| (1..10).include?(i*3)}
 				result => 1
 
 		# Ejemplo find_all:
-			(1..10).find_all {!i! i % 3 == 0}
+			(1..10).find_all {|i| i % 3 == 0}
 			 result => [3, 6, 9]
 
 		# Ejemplo select:
-			(1..10).select{!i! (1..10).include?(i*3)}
+			(1..10).select{|i| (1..10).include?(i*3)}
 				result => [1, 2, 3]
 
 		# Ejemplo any?:
-			(1..10).any? {!i! i % 3 == 0}
+			(1..10).any? {|i| i % 3 == 0}
 			 result => true
 
 		# Ejemplo all?:
-			(1..10).any? {!i! i % 3 == 0}
+			(1..10).any? {|i| i % 3 == 0}
 			 result => false
 
 		# Ejemplo delete_if:
-			[*1..10].delete_if {!i! i % 3 == 0}
+			[*1..10].delete_if {|i| i % 3 == 0}
 				result => [1, 2, 4, 5, 7, 8, 10]
 
 	# Método Merge:
@@ -67,19 +67,19 @@
 					result => {"a" => 111, "b" => 333}
 
 				# => 2-- 
-				diccionario_1.merge(diccionario_2) {!clave,viejo,nuevo! nuevo}
+				diccionario_1.merge(diccionario_2) {|clave,viejo,nuevo| nuevo}
 					result => {"a" => 111, "b" => 333}
 
 				# => 3-- 
-				diccionario_1.merge(diccionario_2) {!clave,viejo,nuevo! viejo}
+				diccionario_1.merge(diccionario_2) {|clave,viejo,nuevo| viejo}
 					result => {"a" => 111, "b" => 222}
 
 				# => 4-- 
-				diccionario_1.merge(diccionario_2) {!clave,viejo,nuevo! viejo * 20}
+				diccionario_1.merge(diccionario_2) {|clave,viejo,nuevo| viejo * 20}
 					result => {"a" => 111, "b" => 4440}
 
 				# => 5-- 
-				diccionario_1.merge(diccionario_2) do !clave,viejo,nuevo!
+				diccionario_1.merge(diccionario_2) do |clave,viejo,nuevo|
 					if viejo < nuevo
 						viejo
 					else
@@ -93,16 +93,16 @@
 		# Ejemplo collect:
 			array = [1, 2, 3, 4, 5, 6, 7]
 
-			nuevo_array = array.collect{!i! i + 1 }
+			nuevo_array = array.collect{|i| i + 1 }
 				result => [2, 3, 4, 6, 7, 8]
 
 		# Ejemplo map:
 			# => 1-- 
-			["manzana","pera","naranja"].map {!fruta! fruta.capitalize}
+			["manzana","pera","naranja"].map {|fruta| fruta.capitalize}
 				result => ["Manzana","Pera","Naranja"]
 
 			# => 2--
-			["manzana","pera","naranja"].map {!fruta! fruta.capitalize if fruta == "naranaja"}
+			["manzana","pera","naranja"].map {|fruta| fruta.capitalize if fruta == "naranaja"}
 				result => [nil,nil,"Naranja"]
 
 				#El anterior resultado nos traera inconvenientes, dado que, al aplicarlo de esta
@@ -110,7 +110,7 @@
 				#que no coincidan dentran un valor nulo o nil
 			
 			# => 3--
-				["manzana","pera","naranja"].map do !fruta! 
+				["manzana","pera","naranja"].map do |fruta| 
 					 if fruta == "naranaja"
 					 	fruta.capitalize
 				end
@@ -120,14 +120,14 @@
 				# de codigo mas formal con do.
 			
 			# => 4--
-				(1..20).collect {!numero! numero * 35}
+				(1..20).collect {|numero| numero * 35}
 
 			# => 5--
 				diccionario = {"a"=>222,"b"=>333}
-				diccionario.map {!c,v! c}
+				diccionario.map {|c,v| c}
 					result=> {"a","b"}
 
-				diccionario.map {!c,v! "#{c} : #{v * 20}"}
+				diccionario.map {|c,v| "#{c} : #{v * 20}"}
 					result=> ["a : 222","b : 6660"]
 
 	# Método  sort:
@@ -152,41 +152,41 @@
 
 		# Ejemplo sort como bloque de código:
 			array = [3,8,1,8,2]
-			array.sort {!v1,v2! v1 <=> v2 }
+			array.sort {|v1,v2| v1 <=> v2 }
 				result => [1,2,3,8,8]
 
 			fruta = ["manzana","pera","naranja","durazno"]
 			fruta.sort
 				result => ["durazno","manzana","naranja","pera"]
 
-			fruta.sort {!fruta1,fruta2! fruta1.length <=> fruta2.length }
+			fruta.sort {|fruta1,fruta2| fruta1.length <=> fruta2.length }
 				result => ["pera","manzana","naranja","durazno"]
 
-			fruta.sort_by {!fruta! fruta.length }
+			fruta.sort_by {|fruta| fruta.length }
 				result => ["pera","manzana","naranja","durazno"]	
 
 		# Ejemplo sort con diccionarios:
 			diccionario = {"a"=> 111, "b"=> 222, "c"=> 333}
 			diccionario.to_a
-			diccionario.sort {!item1,item2! item1[0] <=> item2[0]}
+			diccionario.sort {|item1,item2| item1[0] <=> item2[0]}
 				result => ["a"=>111,"b"=>222,"c"=>333]
 
 	# Método inject:
 		# Este metodo se encarga de acumular información y retornas la misma
 		# Ejemplo: memo hace referencia en ruby de un acumulador
-			(1..10).inject {!memo,n! memo + n}
+			(1..10).inject {|memo,n| memo + n}
 				result => 55
 
 			array = [*1..10]
 				result => [1,2,3,4,5,6,7,8,9,10]
-			suma = array.inject {!memo,n! memo + n}
+			suma = array.inject {|memo,n| memo + n}
 				result => 55
 
-			suma = array.inject(100) {!memo,n! memo + n}
+			suma = array.inject(100) {|memo,n| memo + n}
 				result => 155
 
 			fruta = ["manzana","pera","cirualea","kiwi","durazno"]
-			fruta_mas_larga = fruta.inject do !memo,fruta!
+			fruta_mas_larga = fruta.inject do |memo,fruta|
 				if memo.length > fruta.length
 					memo
 				else
@@ -195,4 +195,4 @@
 			end
 
 			menu = ["Home","Historia","Servicios","Sobre nosotros"]
-			menu.inject(10) {!memo,seccion! memo + seccion.length}
+			menu.inject(10) {|memo,seccion| memo + seccion.length}
