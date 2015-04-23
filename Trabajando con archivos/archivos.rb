@@ -23,3 +23,42 @@
 	  puts "Escuchando: #{resultado}"
 	end
 	puts "Hasta pronto"
+
+	# Sistema de archivos
+	# Dos perspectivas a evaluar:
+		# Unix, linux o Mac : /
+		# Windows : \ 
+		# Directorio/Miarchivo.join()
+
+
+	# Permisologías:
+		# Un dueño y ciertos permisos 
+		# chmod permiosos
+		# chown dueño
+		# Unix: compartido/lib/miarchivo.rb
+		# Windows: compartido\lib\miarchivo.rb
+
+	# Directorios de archivos
+		# Direcctorios absolutos. Ejemplos:
+			puts "/Usuarios/Oja.la/Desktop"
+
+		# Directorios relativos. Ejemplo:
+			puts "../../Usuarios/Oja.la/Desktop"
+
+		# Crear directorios de manera dinamica. Ejemplo
+			# '' => representa un directorio absoluto
+			puts File.join('', 'Usuarios', 'Oja.la', 'Desktop')
+
+		# Almacena toda la información sobre el manejo de archivos
+			puts __FILE__
+
+			# La cual se puede verificar:
+
+				puts File.expand_path(__FILE__)
+
+				# =>  Ubica el directorio en el que se esta
+					puts File.dirname(__FILE__)
+
+				# => Ubica el directoro en el que nos encontrarmos y genera la ruta dinamica
+				# con ayuda de join
+					puts File.join(File.dirname(__FILE__), '..', "Ejercicios\ Archivos")
