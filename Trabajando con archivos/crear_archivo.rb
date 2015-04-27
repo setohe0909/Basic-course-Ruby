@@ -70,3 +70,56 @@
 		FileUtils => # Esta libreria también permite mover o brindar permisos dentro de las herramientas de archivos
 
 # Examinando detalles de los archivos
+	File.exist?(archivo) # => Sirve para verificar si un archivo existe el cual entrega un resultado booleano
+	File.directory?(archivo)  # => Permite verificar si el directorio se encuentra inicializado
+	File.readable?(archivo)   # => Metodo booleano sirve para verificar si podemos leer y sacar información del mismo
+	File.writable?(archivo)   # => Modificar la información que se ha agregado
+	File.executable?(archivo) # => Permite verificar si el archivo es ejecutable
+
+	File.size # => Permite saber el tamaño del archivo
+	File.dirname(archivo) # => Permite traer el directorio donde se encuentra el archivo
+		# Si el resultado es '.' hace referencia que el directorio es directamente donde hace la consulta
+	File.expand_path(archivo) # => Obtener información del directorio expandido o ruta completa
+	File.basename(archivo) # => Se obtiene el nombre del archivo que se esta utilizando
+	File.extname(archivo) # =>  Se obtiene la extensión del archivo
+
+	File.atime(archivo) # => Muestra la ultima vez modificado el archivo hace referencia al tipo de apertura que tiene
+	File.mtime(archivo) # => Muestra que el archivo es de lectura o escritura y la ultima vez que abrieron el archivo
+	File.ctime(archivo) # => Muestra el status si fue modificado 
+
+	# Al crear un objeto que herede el acceso a los anteriores metodos de la clase File, no podremos acceder 
+	# no podremos acceder totalmente a ellos dado que muchos solo son objetos visibles por la clase File
+		# => Ejemplo:
+		archivo = "prueba.txt"
+		miArchivo = File.new(archivo, "r")
+
+		# Al tratar de acceder a los siguientes metodos como:
+			miArchivo.size
+			archivo.dirname
+
+		# Estos entregaran un error  de el metodo declarado no se encuentra definido.
+		
+	# Por ello se hace uso de stat, el cual es un metodo que nos permite acceder a ciertos metodos no visibles por fuera
+	# de la clase File.
+		# =>  Ejemplo: 
+		archivo = "prueba.txt"
+		miArchivo = File.new(archivo, "r")
+
+		miArchivo.stat.size
+
+		# Esta ultima declaración o fragmento de codigo si nos permitira obtener el resultado esperado del tamaño
+		# del archivo aun siendo una objeto instanciado de la clase File
+
+# Trabajando con directorios
+
+	__FILE__ => Esta es una constante dentro de guby que nos permite acceder a cierta información 
+
+	# Manejo con directorios a través de la clase Dir
+		Dir.pwd  => Retorna la ruta donde se encuentra el directorio
+		Dir.chdir(..) => Permite devolverse en el directorio
+		Dir.entries(".") => Muestra documentos ocultos
+		Dir.mkdir("miProyecto") => Permite la creación de una nueva capeta
+		Dir.delete("miProyecto") => Permite eliminar una carpeta existente
+
+		# Bloques de codigo con la clase Dir
+		Dir.foreach('.'){|entrada| puts entrada}
