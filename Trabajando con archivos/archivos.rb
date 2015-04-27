@@ -62,3 +62,6 @@
 				# => Ubica el directoro en el que nos encontrarmos y genera la ruta dinamica
 				# con ayuda de join
 					puts File.join(File.dirname(__FILE__), '..', "Ejercicios\ Archivos")
+
+	# Creando archivos con diferentes modos
+	
